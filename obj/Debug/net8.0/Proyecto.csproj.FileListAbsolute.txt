@@ -1,0 +1,14 @@
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.AssemblyInfoInputs.cache
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.AssemblyInfo.cs
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.csproj.CoreCompileInputs.cache
+C:\Facultad\Patrones de diseg\Proyecto\bin\Debug\net8.0\Proyecto.exe
+C:\Facultad\Patrones de diseg\Proyecto\bin\Debug\net8.0\Proyecto.deps.json
+C:\Facultad\Patrones de diseg\Proyecto\bin\Debug\net8.0\Proyecto.runtimeconfig.json
+C:\Facultad\Patrones de diseg\Proyecto\bin\Debug\net8.0\Proyecto.dll
+C:\Facultad\Patrones de diseg\Proyecto\bin\Debug\net8.0\Proyecto.pdb
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.dll
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\refint\Proyecto.dll
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.pdb
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.genruntimeconfig.cache
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\ref\Proyecto.dll
