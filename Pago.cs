@@ -3,17 +3,19 @@ using System;
 
 public abstract class Pago
 {
-    protected float monto;
+    private float monto;
+
+    protected float Monto { get => monto; set => monto = value; }
 
     public Pago(float monto)
     {
-        this.monto = monto;
+        this.Monto = monto;
     }
 
 
     public bool Procesar(float restante)
     {
-        Console.WriteLine($"Procesando pago de tipo {GetTipo()} por ${monto}");
+        Console.WriteLine($"Procesando pago de tipo {GetTipo()} por ${Monto}");
 
 
         if (!ValidarDatos())
@@ -22,14 +24,14 @@ public abstract class Pago
             return false;
         }
 
-        if (monto >= restante)
+        if (Monto >= restante)
         {
-            Console.WriteLine($"Pago procesado exitosamente: ${monto}");
+            Console.WriteLine($"Pago procesado exitosamente: ${Monto}");
             return true;
         }
         else
         {
-            Console.WriteLine($"Error: Monto insuficiente. Se requiere ${restante}, se proporcionó ${monto}");
+            Console.WriteLine($"Error: Monto insuficiente. Se requiere ${restante}, se proporcionó ${Monto}");
             return false;
         }
     }
@@ -39,11 +41,11 @@ public abstract class Pago
 
     public float GetMonto()
     {
-        return monto;
+        return Monto;
     }
 
     public void SetMonto(float monto)
     {
-        this.monto = monto;
+        this.Monto = monto;
     }
 }

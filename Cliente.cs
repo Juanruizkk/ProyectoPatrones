@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Cliente
 {
+    private int idCliente;
     private string nombre;
     private string apellido;
     private string direccion;
@@ -10,110 +11,60 @@ public class Cliente
 
     private List<Pedido> listaPedidos;
 
+    public string Nombre { get => nombre; set => nombre = value; }
+    public string Apellido { get => apellido; set => apellido = value; }
+    public string Direccion { get => direccion; set => direccion = value; }
+    public string UbicacionGPS { get => ubicacionGPS; set => ubicacionGPS = value; }
+    public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
+    public int IdCliente { get => idCliente; set => idCliente = value; }
+
     // Constructor
     public Cliente(string nombre, string apellido, string direccion, string ubicacionGPS)
     {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.ubicacionGPS = ubicacionGPS;
-        this.listaPedidos = new List<Pedido>();
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.Direccion = direccion;
+        this.UbicacionGPS = ubicacionGPS;
+        this.ListaPedidos = new List<Pedido>();
     }
 
     // Constructor alternativo sin parámetros
     public Cliente()
     {
-        this.nombre = "";
-        this.apellido = "";
-        this.direccion = "";
-        this.ubicacionGPS = "";
-        this.listaPedidos = new List<Pedido>();
+        this.Nombre = "";
+        this.Apellido = "";
+        this.Direccion = "";
+        this.UbicacionGPS = "";
+        this.ListaPedidos = new List<Pedido>();
     }
 
     // Función para listar información del cliente
-    public List<string> ListarInfo()
+   public void ListarInfo()
+{
+    Console.WriteLine($"Nombre: {Nombre} {Apellido}");
+    Console.WriteLine($"Dirección: {Direccion}");
+    Console.WriteLine($"Ubicación GPS: {UbicacionGPS}");
+    Console.WriteLine($"Total de pedidos: {ListaPedidos.Count}");
+
+    // Agregar información de cada pedido
+    foreach (Pedido pedido in ListaPedidos)
     {
-        List<string> info = new List<string>();
-        
-        info.Add($"Nombre: {nombre} {apellido}");
-        info.Add($"Dirección: {direccion}");
-        info.Add($"Ubicación GPS: {ubicacionGPS}");
-        info.Add($"Total de pedidos: {listaPedidos.Count}");
-        
-        // Agregar información de cada pedido
-        for (int i = 0; i < listaPedidos.Count; i++)
-        {
-            info.Add($"Pedido {i + 1}:");
-            info.Add($"  Estado: {listaPedidos[i].GetEstado().GetNombre()}");
-            
-            List<string> pedidoItems = listaPedidos[i].ListarInfo();
-            if (pedidoItems.Count > 0)
-            {
-                info.Add($"  Items: {string.Join(", ", pedidoItems)}");
-            }
-            else
-            {
-                info.Add("  Items: Sin items");
-            }
-        }
-        
-        return info;
+        Console.Write("  - ");
+        pedido.ListarInfo();
     }
+}
+
 
     // Métodos adicionales útiles
     public void AgregarPedido(Pedido pedido)
     {
-        listaPedidos.Add(pedido);
+        ListaPedidos.Add(pedido);
     }
 
     public void RemoverPedido(Pedido pedido)
     {
-        listaPedidos.Remove(pedido);
+        ListaPedidos.Remove(pedido);
     }
 
-    // Getters y Setters
-    public string GetNombre()
-    {
-        return nombre;
-    }
-
-    public void SetNombre(string nombre)
-    {
-        this.nombre = nombre;
-    }
-
-    public string GetApellido()
-    {
-        return apellido;
-    }
-
-    public void SetApellido(string apellido)
-    {
-        this.apellido = apellido;
-    }
-
-    public string GetDireccion()
-    {
-        return direccion;
-    }
-
-    public void SetDireccion(string direccion)
-    {
-        this.direccion = direccion;
-    }
-
-    public string GetUbicacionGPS()
-    {
-        return ubicacionGPS;
-    }
-
-    public void SetUbicacionGPS(string ubicacionGPS)
-    {
-        this.ubicacionGPS = ubicacionGPS;
-    }
-
-    public List<Pedido> GetListaPedidos()
-    {
-        return new List<Pedido>(listaPedidos);
-    }
+   
 }

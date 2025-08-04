@@ -8,36 +8,23 @@ public class Producto
     private int llenos;
     private int vacios;
 
+    public string Nombre { get => nombre; set => nombre = value; }
+    public float Precio { get => precio; set => precio = value; }
+    public int Llenos { get => llenos; set => llenos = value; }
+    public int Vacios { get => vacios; set => vacios = value; }
+
     public Producto(string nombre, float precio, int llenos, int vacios)
     {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.llenos = llenos;
-        this.vacios = vacios;
+        this.Nombre = nombre;
+        this.Precio = precio;
+        this.Llenos = llenos;
+        this.Vacios = vacios;
     }
 
-    public void listarInfo()
+    public void ListarInfo()
     {
-        Console.WriteLine($"Producto: {nombre}, Precio: {precio}, Llenos: {llenos}, Vacios: {vacios}");
+        Console.WriteLine($"Producto: {Nombre}, Precio: {Precio}, Llenos: {Llenos}, Vacios: {Vacios}");
     }
 
-    public void setLlenos(int cantidad)
-    {
-        llenos = cantidad;
-    }
-
-    public void setVacios(int cantidad)
-    {
-        vacios = cantidad;
-    }
-    public float getPrecio()
-    {
-        return precio;
-    }
-
-    public string getNombre()
-    {
-        return nombre;
-    } 
 
 }

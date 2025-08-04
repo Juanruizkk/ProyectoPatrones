@@ -1,26 +1,30 @@
 using System;
 using System.Collections.Generic;
 
-public class PedidoProducto()
+public class PedidoProducto
 {
     private Producto producto;
     private int cantidad;
     private float precioUnitario;
 
-    public PedidoProducto(PedidoProducto prod, int cant, int precioU)
+    public Producto Producto { get => producto; set => producto = value; }
+    public int Cantidad { get => cantidad; set => cantidad = value; }
+    public float PrecioUnitario { get => precioUnitario; set => precioUnitario = value; }
+
+    public PedidoProducto(Producto prod, int cant, float precioU)
     {
-        this.producto = prod;
-        this.cantidad = cant;
-        this.precioUnitario = precioU;
+        this.Producto = prod;
+        this.Cantidad = cant;
+        this.PrecioUnitario = precioU;
     }
 
-    public void listarInfo()
+    public void ListarInfo()
     {
-        Console.WriteLine($"Producto: {producto.getNombre()}, Precio: {this.precioUnitario}, Cantidad: {this.cantidad}");
+        Console.WriteLine($"Producto: {Producto.Nombre}, Precio: {this.PrecioUnitario}, Cantidad: {this.Cantidad}");
     }
 
-    public float getTotal()
+    public float GetTotal()
     {
-        return this.precioUnitario * this.cantidad;
+        return this.PrecioUnitario * this.Cantidad;
     }
 }
