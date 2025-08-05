@@ -1,15 +1,15 @@
 ﻿using System;
 
-// Clase Program para probar el patrón
+// Clase Program para probar todos los patrones
 public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("=== Prueba del Patrón State con Singleton Perezoso - Sistema de Pedidos ===\n");
+        Console.WriteLine("=== Prueba del Sistema Completo de Pedidos ===\n");
 
-        // Crear un nuevo pedido
+        // Crear un pedido completo
         Pedido pedido = new Pedido();
-        Console.WriteLine($"Estado inicial: {pedido.GetEstado().GetNombre()}\n");
+        Console.WriteLine($"Estado inicial: {pedido.Estado.GetNombre()}\n");
 
         // Verificar que los estados son singleton
         Console.WriteLine("--- Verificación Singleton ---");
@@ -21,26 +21,24 @@ public class Program
         Console.WriteLine("--- Caso 1: Flujo normal ---");
         Console.WriteLine("Asignando pedido...");
         pedido.AgregarPedido("Pizza Margherita", "Juan Pérez");
-        Console.WriteLine($"Estado actual: {pedido.GetEstado().GetNombre()}");
-        Console.WriteLine($"Es instancia singleton Asignado: {ReferenceEquals(pedido.GetEstado(), Asignado.GetInstance())}");
+        Console.WriteLine($"Estado actual: {pedido.Estado.GetNombre()}");
         
         Console.WriteLine("\nEntregando pedido...");
         pedido.EntregarPedido();
-        Console.WriteLine($"Estado actual: {pedido.GetEstado().GetNombre()}");
-        Console.WriteLine($"Es instancia singleton Entregado: {ReferenceEquals(pedido.GetEstado(), Entregado.GetInstance())}");
+        Console.WriteLine($"Estado actual: {pedido.Estado.GetNombre()}");
         
-        Console.WriteLine($"Pedidos en la lista: {string.Join(", ", pedido.ListarInfo())}\n");
+        Console.WriteLine("Información del pedido:");
+        pedido.ListarInfo();
 
         // Caso 2: Cancelación desde Asignado
-        Console.WriteLine("--- Caso 2: Cancelación desde Asignado ---");
+        Console.WriteLine("\n--- Caso 2: Cancelación desde Asignado ---");
         Pedido pedido2 = new Pedido();
         pedido2.AgregarPedido("Hamburguesa", "María García");
-        Console.WriteLine($"Estado: {pedido2.GetEstado().GetNombre()}");
+        Console.WriteLine($"Estado: {pedido2.Estado.GetNombre()}");
         
         Console.WriteLine("Cancelando pedido...");
         pedido2.CancelarPedido();
-        Console.WriteLine($"Estado actual: {pedido2.GetEstado().GetNombre()}");
-        Console.WriteLine($"Es instancia singleton Cancelado: {ReferenceEquals(pedido2.GetEstado(), Cancelado.GetInstance())}\n");
+        Console.WriteLine($"Estado actual: {pedido2.Estado.GetNombre()}\n");
 
         // Caso 3: Intentar operaciones inválidas
         Console.WriteLine("--- Caso 3: Operaciones inválidas ---");
@@ -51,5 +49,10 @@ public class Program
         pedido2.AgregarPedido("Nuevo pedido", "Repartidor");
         
         Console.WriteLine("\n=== Fin de la prueba ===");
+        
+        Console.WriteLine("\n" + new string('=', 60) + "\n");
+        
+        // Prueba del patrón Chain of Responsibility (Verificadores)
+        PruebaVerificador.PruebaVerificacion();
     }
 }

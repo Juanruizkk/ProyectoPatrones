@@ -9,7 +9,7 @@ public class Pedido
     private int nroCliente;
     private int nroTienda;
     private Estado estado;
-    private TipoPedido tipo;
+    
     private DateTime fecha;
     private List<PedidoProducto> productos;
     private float montoTotal;
@@ -25,7 +25,6 @@ public class Pedido
     public float MontoTotal { get => montoTotal; set => montoTotal = value; }
     public bool Pagado { get => pagado; set => pagado = value; }
     public List<Pago> Pagos { get => pagos; set => pagos = value; }
-    public TipoPedido Tipo { get => tipo; set => tipo = value; }
 
     // Constructor
     public Pedido()
@@ -40,13 +39,13 @@ public class Pedido
     }
 
     // Constructor con parámetros
-    public Pedido(int nroRepartidor, int nroCliente, int nroTienda, TipoPedido tipo)
+    public Pedido(int nroRepartidor, int nroCliente, int nroTienda )
     {
         this.NroRepartidor = nroRepartidor;
         this.NroCliente = nroCliente;
         this.NroTienda = nroTienda;
-        this.Tipo = tipo;
         this.Productos = new List<PedidoProducto>();
+        this.Pagos = new List<Pago>();
         this.Estado = Ingresado.GetInstance();
         this.Fecha = DateTime.Now;
         this.Pagado = false;
@@ -59,7 +58,6 @@ public class Pedido
         Console.WriteLine($"Número de Cliente: {NroCliente}");
         Console.WriteLine($"Número de Tienda: {NroTienda}");
         Console.WriteLine($"Estado: {Estado.GetNombre()}");
-        Console.WriteLine($"Tipo: {Tipo}");
         Console.WriteLine($"Fecha: {Fecha:dd/MM/yyyy HH:mm}");
         Console.WriteLine($"Monto Total: ${MontoTotal}");
         Console.WriteLine($"Pagado: {(Pagado ? "Sí" : "No")}");
@@ -72,7 +70,13 @@ public class Pedido
         }
     }
 
-    public void AgregarPedido(string nombreProducto, string repartidor = null)
+    // Método para cambiar estado (necesario para el patrón State)
+    public void SetEstado(Estado nuevoEstado)
+    {
+        Estado = nuevoEstado;
+    }
+
+    public void AgregarPedido(string nombreProducto, string? repartidor = null)
     {
         Estado.Asignar(this, nombreProducto, repartidor);
     }
@@ -93,9 +97,10 @@ public class Pedido
     }
 
     // Métodos para manejar productos
-    public void AgregarAPedidos(Producto nuevoProducto)
+    public void AgregarAPedidos(string nombreProducto)
     {
-        // Crear un producto simple para agregar
+        // Crear un producto simple y agregarlo
+        Producto nuevoProducto = new Producto(nombreProducto, 15.0f, 1, 0);
         PedidoProducto producto = new PedidoProducto(nuevoProducto, 1, nuevoProducto.Precio);
         Productos.Add(producto);
         CalcularMontoTotal();

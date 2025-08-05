@@ -12,3 +12,4 @@ C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\refint\Proyecto.dll
 C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.pdb
 C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.genruntimeconfig.cache
 C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\ref\Proyecto.dll
+C:\Facultad\Patrones de diseg\Proyecto\obj\Debug\net8.0\Proyecto.sourcelink.json
