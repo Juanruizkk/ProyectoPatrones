@@ -20,18 +20,17 @@ public class Asignado : Estado
     public override void Cancelar(Pedido pedido)
     {
         pedido.SetEstado(Cancelado.GetInstance());
-        Console.WriteLine("Pedido cancelado desde estado Asignado");
     }
 
     public override void Rechazar(Pedido pedido)
     {
         pedido.SetEstado(Cancelado.GetInstance());
-        Console.WriteLine("Pedido rechazado desde estado Asignado");
+        pedido.SetRepartidor(-1);
+       
     }
 
     public override void Entregar(Pedido pedido)
     {
         pedido.SetEstado(Entregado.GetInstance());
-        Console.WriteLine("Pedido entregado exitosamente");
     }
 }

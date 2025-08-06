@@ -98,7 +98,6 @@ public class Pedido
         estado.Entregar(this);
     }
 
-
     public void AgregarPago(Pago pago)
     {
         if (!Pagado)

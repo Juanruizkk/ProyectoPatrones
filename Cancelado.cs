@@ -16,7 +16,4 @@ public class Cancelado : Estado
         }
         return instance;
     }
-
-    // En estado Cancelado no se pueden realizar más transiciones
-    // Los métodos heredados mostrarán el mensaje de error por defecto
 }

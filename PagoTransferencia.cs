@@ -21,7 +21,7 @@ public class PagoTransferencia : Pago
 
             Console.WriteLine($"Validación exitosa: Transferencia válida con comprobante {comprobante}");
             return true;
-
+     
         }
     }
 

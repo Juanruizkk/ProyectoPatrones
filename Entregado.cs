@@ -18,6 +18,4 @@ public class Entregado : Estado
         return instance;
     }
 
-    // En estado Entregado no se pueden realizar más transiciones
-    // Los métodos heredados mostrarán el mensaje de error por defecto
 }
