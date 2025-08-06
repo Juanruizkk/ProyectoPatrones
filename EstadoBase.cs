@@ -15,7 +15,7 @@ public abstract class Estado
         return nombre;
     }
 
-    public virtual void Asignar(Pedido pedido, string pedidoItem, string? repartidor)
+    public virtual void  Asignar(Pedido pedido, int repartidor)
     {
         Console.WriteLine($"No se puede pasar de '{GetNombre()}' a asignado");
     }

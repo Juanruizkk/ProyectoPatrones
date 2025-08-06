@@ -1,6 +1,6 @@
 using System;
 
-// Clase abstracta para verificadores específicos con chain of responsibility
+// Clase abstracta para verificadores específicos 
 public abstract class VEspecifico : Verificador
 {
     protected Verificador? vClass;

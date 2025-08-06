@@ -1,6 +1,5 @@
 using System;
 
-// Clase Usuario
 public class Usuario
 {
     private int idUsuario;
@@ -12,7 +11,6 @@ public class Usuario
     private string imagen;
     private string rol;
 
-    // Properties
     public int IdUsuario { get => idUsuario; set => idUsuario = value; }
     public string Nombre { get => nombre; set => nombre = value; }
     public Verificador VPass { get => vPass; set => vPass = value; }
@@ -22,7 +20,6 @@ public class Usuario
     public string Imagen { get => imagen; set => imagen = value; }
     public string Rol { get => rol; set => rol = value; }
 
-    // Constructor sin parámetros
     public Usuario()
     {
         this.nombre = "";
@@ -33,7 +30,6 @@ public class Usuario
         this.rol = "";
     }
 
-    // Constructor con parámetros
     public Usuario(int idUsuario, string nombre, string apellido, string usuario, 
                    string contrasenia, string imagen, string rol, Verificador vPass)
     {
@@ -47,13 +43,11 @@ public class Usuario
         this.vPass = vPass;
     }
 
-    // Método ListarInfo
     public string ListarInfo()
     {
         return $"ID: {idUsuario}, Usuario: {usuario}, Nombre: {nombre} {apellido}, Rol: {rol}";
     }
 
-    // Método CambiarContrasenia según el pseudocódigo del diagrama
     public void CambiarContrasenia(string pass)
     {
         if (vPass != null && vPass.Verificar(pass))
@@ -67,7 +61,6 @@ public class Usuario
         }
     }
 
-    // Método EditarUsuario
     public void EditarUsuario(Usuario usuarioModificado)
     {
         this.nombre = usuarioModificado.nombre;

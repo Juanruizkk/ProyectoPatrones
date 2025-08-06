@@ -18,7 +18,6 @@ public class Cliente
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
     public int IdCliente { get => idCliente; set => idCliente = value; }
 
-    // Constructor
     public Cliente(string nombre, string apellido, string direccion, string ubicacionGPS)
     {
         this.Nombre = nombre;
@@ -28,7 +27,6 @@ public class Cliente
         this.ListaPedidos = new List<Pedido>();
     }
 
-    // Constructor alternativo sin parámetros
     public Cliente()
     {
         this.Nombre = "";
@@ -38,7 +36,6 @@ public class Cliente
         this.ListaPedidos = new List<Pedido>();
     }
 
-    // Función para listar información del cliente
    public void ListarInfo()
 {
     Console.WriteLine($"Nombre: {Nombre} {Apellido}");
@@ -55,7 +52,6 @@ public class Cliente
 }
 
 
-    // Métodos adicionales útiles
     public void AgregarPedido(Pedido pedido)
     {
         ListaPedidos.Add(pedido);

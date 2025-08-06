@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 
 // Verificador de cantidad específica de números en la contraseña
-public class VCantNum : VEspecifico
+public class VNum : VEspecifico
 {
-    private int numeros;
+    private bool numeros;
 
-    public VCantNum(int numeros, Verificador? vClass = null) : base(vClass)
+    public VNum(bool numeros, Verificador? vClass = null) : base(vClass)
     {
         this.numeros = numeros;
     }
@@ -14,6 +14,6 @@ public class VCantNum : VEspecifico
     protected override bool VerificarEsp(string pass)
     {
         int count = pass.Count(char.IsDigit);
-        return count == numeros;
+        return numeros ? count > 0 : count == 0;
     }
 }

@@ -11,18 +11,17 @@ public class PagoTransferencia : Pago
 
     public override bool ValidarDatos()
     {
-        if (Monto > 0 && !string.IsNullOrEmpty(comprobante) && comprobante.Trim().Length > 0)
+        if (string.IsNullOrEmpty(comprobante) && comprobante.Trim().Length > 0)
         {
-            Console.WriteLine($"Validación exitosa: Transferencia válida con comprobante {comprobante}");
-            return true;
+
+            return false;
         }
         else
         {
-            if (Monto <= 0)
-                Console.WriteLine("Error: El monto de transferencia debe ser mayor a 0");
-            if (string.IsNullOrEmpty(comprobante) || comprobante.Trim().Length == 0)
-                Console.WriteLine("Error: Se requiere un comprobante válido para la transferencia");
-            return false;
+
+            Console.WriteLine($"Validación exitosa: Transferencia válida con comprobante {comprobante}");
+            return true;
+
         }
     }
 
@@ -33,16 +32,7 @@ public class PagoTransferencia : Pago
 
     public string ListarInfo()
     {
-        return $"Tipo: {GetTipo()}, Monto: ${Monto}, Comprobante: {comprobante}";
+        return $"Tipo: {GetTipo()}, Monto: ${monto}, Comprobante: {comprobante}";
     }
 
-    public string GetComprobante()
-    {
-        return comprobante;
-    }
-
-    public void SetComprobante(string comprobante)
-    {
-        this.comprobante = comprobante;
-    }
 }

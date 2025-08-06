@@ -1,30 +1,28 @@
 using System;
 using System.Collections.Generic;
 
-// Clase Pedido (Context)
 public class Pedido
 {
-    // Atributos según el diagrama
-    private int nroRepartidor;
-    private int nroCliente;
-    private int nroTienda;
+    private int idRepartidor;
+    private int idCliente;
+    private int idRecepcionista;
     private Estado estado;
-    
     private DateTime fecha;
     private List<PedidoProducto> productos;
     private float montoTotal;
     private bool pagado;
     private List<Pago> pagos;
-
-    public int NroRepartidor { get => nroRepartidor; set => nroRepartidor = value; }
-    public int NroCliente { get => nroCliente; set => nroCliente = value; }
-    public int NroTienda { get => nroTienda; set => nroTienda = value; }
+    public int IdRepartidor { get => idRepartidor; set => idRepartidor = value; }
+    public int IdCliente { get => idCliente; set => idCliente = value; }
+    public int IdRecepcionista { get => idRecepcionista; set => idRecepcionista = value; }
     public Estado Estado { get => estado; set => estado = value; }
     public DateTime Fecha { get => fecha; set => fecha = value; }
     public List<PedidoProducto> Productos { get => productos; set => productos = value; }
     public float MontoTotal { get => montoTotal; set => montoTotal = value; }
     public bool Pagado { get => pagado; set => pagado = value; }
     public List<Pago> Pagos { get => pagos; set => pagos = value; }
+
+
 
     // Constructor
     public Pedido()
@@ -39,11 +37,11 @@ public class Pedido
     }
 
     // Constructor con parámetros
-    public Pedido(int nroRepartidor, int nroCliente, int nroTienda )
+    public Pedido(int idRepartidor, int idCliente, int idRecepcionista)
     {
-        this.NroRepartidor = nroRepartidor;
-        this.NroCliente = nroCliente;
-        this.NroTienda = nroTienda;
+        this.IdRepartidor = idRepartidor;
+        this.IdCliente = idCliente;
+        this.IdRecepcionista = idRecepcionista;
         this.Productos = new List<PedidoProducto>();
         this.Pagos = new List<Pago>();
         this.Estado = Ingresado.GetInstance();
@@ -54,10 +52,10 @@ public class Pedido
 
     public void ListarInfo()
     {
-        Console.WriteLine($"Número de Repartidor: {NroRepartidor}");
-        Console.WriteLine($"Número de Cliente: {NroCliente}");
-        Console.WriteLine($"Número de Tienda: {NroTienda}");
-        Console.WriteLine($"Estado: {Estado.GetNombre()}");
+        Console.WriteLine($"ID de Repartidor: {IdRepartidor}");
+        Console.WriteLine($"ID de Cliente: {IdCliente}");
+        Console.WriteLine($"ID de Recepcionista: {IdRecepcionista}");
+        Console.WriteLine($"Estado: {(this.estado.GetNombre())}");
         Console.WriteLine($"Fecha: {Fecha:dd/MM/yyyy HH:mm}");
         Console.WriteLine($"Monto Total: ${MontoTotal}");
         Console.WriteLine($"Pagado: {(Pagado ? "Sí" : "No")}");
@@ -75,66 +73,44 @@ public class Pedido
     {
         Estado = nuevoEstado;
     }
-
-    public void AgregarPedido(string nombreProducto, string? repartidor = null)
+    public void SetRepartidor(int repartidor)
     {
-        Estado.Asignar(this, nombreProducto, repartidor);
+        this.idRepartidor = repartidor;
+        Console.WriteLine($"Repartidor {repartidor} asignado al pedido");
+    } 
+    public void Asignar(int repartidor)
+    {
+        estado.Asignar(this, repartidor);
     }
 
     public void CancelarPedido()
     {
-        Estado.Cancelar(this);
+        estado.Cancelar(this);
     }
 
     public void RechazarPedido()
     {
-        Estado.Rechazar(this);
+        estado.Rechazar(this);
     }
 
     public void EntregarPedido()
     {
-        Estado.Entregar(this);
-    }
-
-    // Métodos para manejar productos
-    public void AgregarAPedidos(string nombreProducto)
-    {
-        // Crear un producto simple y agregarlo
-        Producto nuevoProducto = new Producto(nombreProducto, 15.0f, 1, 0);
-        PedidoProducto producto = new PedidoProducto(nuevoProducto, 1, nuevoProducto.Precio);
-        Productos.Add(producto);
-        CalcularMontoTotal();
-    }
-
-    public void RemoverDePedidos(Producto prod)
-    {
-        Productos.RemoveAll(p => p.Producto.Nombre == prod.Nombre);
-        CalcularMontoTotal();
+        estado.Entregar(this);
     }
 
 
-    // Método para calcular monto total
-    private void CalcularMontoTotal()
-    {
-        MontoTotal = 0.0f;
-        foreach (PedidoProducto pprod in Productos)
-        {
-            MontoTotal += pprod.PrecioUnitario * pprod.Cantidad;
-        }
-    }
-    
     public void AgregarPago(Pago pago)
     {
-        if (!pagado)
+        if (!Pagado)
         {
             if (pago.Procesar(GetMontoRestante()))
             {
-                pagos.Add(pago);
+                Pagos.Add(pago);
                 Console.WriteLine("El pago es correcto");
 
-                if (GetMontoPagado() >= montoTotal)
+                if (GetMontoPagado() >= MontoTotal)
                 {
-                    pagado = true;
+                    Pagado = true;
                     Console.WriteLine("El pedido está completamente pagado");
                 }
             }
@@ -149,27 +125,24 @@ public class Pedido
         }
     }
 
-    // GetMontoPagado con lista de pagos
     public float GetMontoPagado()
     {
         float totalPagado = 0.0f;
-        foreach (Pago p in pagos)
+        foreach (Pago p in Pagos)
         {
             totalPagado += p.GetMonto();
         }
         return totalPagado;
     }
 
-    // GetMontoRestante sigue igual
     public float GetMontoRestante()
     {
-        return montoTotal - GetMontoPagado();
+        return MontoTotal - GetMontoPagado();
     }
 
-    // Getter para la lista de pagos
     public List<Pago> GetPagos()
     {
-        return new List<Pago>(pagos);
+        return new List<Pago>(Pagos);
     }
 
 

@@ -10,16 +10,7 @@ public class PagoEfectivo : Pago
     
     public override bool ValidarDatos()
     {
-        if (Monto > 0)
-        {
-            Console.WriteLine("Validación exitosa: Monto de efectivo válido");
-            return true;
-        }
-        else
-        {
-            Console.WriteLine("Error: El monto en efectivo debe ser mayor a 0");
-            return false;
-        }
+        return true;
     }
 
     public override string GetTipo()
@@ -29,6 +20,6 @@ public class PagoEfectivo : Pago
 
     public string ListarInfo()
     {
-        return $"Tipo: {GetTipo()}, Monto: ${Monto}";
+        return $"Tipo: {GetTipo()}, Monto: ${this.monto}";
     }
 }
